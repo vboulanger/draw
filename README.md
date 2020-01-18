@@ -99,7 +99,7 @@ depict.line(random_walk, title='Random walk', legend='Path', x_label='Step')
 Your graph parameters are stored in a session to keep your graphs visually
 consistent and avoid boilerplate code.
 ```python
-depict.session(width=100, grid_visible=True, palette_name='linear_blue')
+depict.session(width=1000, grid_visible=True, palette_name='linear_blue')
 ```
 
 * #### Color bars made easy
