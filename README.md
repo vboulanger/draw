@@ -1,6 +1,4 @@
-<div align="center">
 <img src="https://raw.githubusercontent.com/vboulanger/depict/master/logo_and_name.png" alt = "drawing" WIDTH=500/></img>
-</div>
 
 <br>
 <a href="https://pypi.org/project/depict/">
