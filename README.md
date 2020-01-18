@@ -1,6 +1,11 @@
 <img src="https://raw.githubusercontent.com/vboulanger/depict/master/logo_and_name.png" alt = "drawing" WIDTH=500/></img>
 
 <br>
+
+<a href="https://travis-ci.com/vboulanger/depict">
+<img src="https://travis-ci.com/vboulanger/depict.svg?branch=master" alt="CI" />
+</a>
+
 <a href="https://pypi.org/project/depict/">
 <img src="https://img.shields.io/pypi/v/depict.svg" alt="latest release" />
 </a>
