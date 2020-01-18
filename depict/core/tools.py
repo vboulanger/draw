@@ -53,14 +53,17 @@ def _make_plot(plot, width_total_as_session, share_x, share_y):
                         x_range = xr
                         y_range = yr
                     else:
-                        f_r, xr, yr = build_plot(p_1, width=width, y_range=y_range)
+                        f_r, xr, yr = build_plot(p_1, width=width,
+                                                 y_range=y_range)
                         x_range = xr
                 else:
                     if y_range is None:
-                        f_r, xr, yr = build_plot(p_1, width=width, x_range=x_range)
+                        f_r, xr, yr = build_plot(p_1, width=width,
+                                                 x_range=x_range)
                         y_range = yr
                     else:
-                        f_r = build_plot(p_1, width=width, x_range=x_range, y_range=y_range)[0]
+                        f_r = build_plot(p_1, width=width, x_range=x_range,
+                                         y_range=y_range)[0]
                 row_all.append(f_r)
             elif isinstance(p_1, (list, np.ndarray)):
                 fig_width = int(p_1[0].width_session / len(p_1))
@@ -73,22 +76,29 @@ def _make_plot(plot, width_total_as_session, share_x, share_y):
                             x_range = xr
                             y_range = yr
                         else:
-                            f_r, xr, yr = build_plot(pp, width=width, y_range=y_range)
+                            f_r, xr, yr = build_plot(pp, width=width,
+                                                     y_range=y_range)
                             x_range = xr
                     else:
                         if y_range is None:
-                            f_r, xr, yr = build_plot(pp, width=width, x_range=x_range)
+                            f_r, xr, yr = build_plot(pp, width=width,
+                                                     x_range=x_range)
                             y_range = yr
                         else:
-                            f_r, xr, yr = build_plot(pp, width=width, x_range=x_range, y_range=y_range)
+                            f_r, xr, yr = build_plot(pp, width=width,
+                                                     x_range=x_range,
+                                                     y_range=y_range)
                     row_i.append(f_r)
                 row_all.append(row(row_i))
         return column(row_all)
 
-def show_base(plot, width_total_as_session=False, share_x=False, share_y=False):
+
+def show_base(plot, width_total_as_session=False, share_x=False,
+              share_y=False):
     show_bokeh(_make_plot(plot=plot,
                           width_total_as_session=width_total_as_session,
                           share_x=share_x, share_y=share_y))
+
 
 def _update_show_default_args(show_base, session):
     def show_updated(plot,
@@ -97,6 +107,7 @@ def _update_show_default_args(show_base, session):
         show_base(plot=plot, width_total_as_session=width_total_as_session,
                   share_x=share_x, share_y=share_y)
     return show_updated
+
 
 def _update_save_default_args(save_base, session):
     def save_updated(plot, save_path=session.save_path,
@@ -108,6 +119,7 @@ def _update_save_default_args(save_base, session):
                   width_total_as_session=width_total_as_session,
                   share_x=share_x, share_y=share_y)
     return save_updated
+
 
 def save_base(plot, save_path, file_exists_mode, width_total_as_session,
               share_x, share_y):
