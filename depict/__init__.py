@@ -7,10 +7,11 @@ from .core import plot
 from .core.session import Session
 
 
-def session(width=900, height=400, save_path=None, file_exists_mode='append', description='', title='',
-            jupyter_notebook=False, background_color='aliceblue',
-            palette_name='categories_10', grid_visible=True, show_plot=True,
-            width_total_as_session=True, automatic_color_mapping=True):
+def session(width=900, height=400, save_path=None, file_exists_mode='append',
+            description='', title='', jupyter_notebook=False,
+            background_color='aliceblue', palette_name='categories_10',
+            grid_visible=True, show_plot=True, width_total_as_session=True,
+            automatic_color_mapping=True):
     global _SESSION, histogram, line, point, save, show
     _SESSION = Session(width=width, height=height, save_path=save_path,
                        file_exists_mode=file_exists_mode,
@@ -28,5 +29,6 @@ def session(width=900, height=400, save_path=None, file_exists_mode='append', de
     line = _update_line_default_args(line=line_base, session=_SESSION)
     point = _update_point_default_args(point=point_base, session=_SESSION)
     show = _update_show_default_args(show_base=show_base, session=_SESSION)
+
 
 session()

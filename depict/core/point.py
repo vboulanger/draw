@@ -10,10 +10,10 @@ import numpy as np
 import pandas as pd
 
 
-def point_base(x, y, source_dataframe, width, height, description, title, x_label, y_label,
-              show_plot, color, colorbar_type, legend, size, alpha,
-              x_axis_type, y_axis_type, grid_visible, session,
-              save_path):
+def point_base(x, y, source_dataframe, width, height, description, title,
+               x_label, y_label, show_plot, color, colorbar_type, legend, size,
+               alpha, x_axis_type, y_axis_type, grid_visible, session,
+               save_path):
     """ Scatter plot
 
     Args:
@@ -64,7 +64,8 @@ def point_base(x, y, source_dataframe, width, height, description, title, x_labe
     if (x is None) or (y is None):
         raise ValueError('X and y must be specified. They must be a one '
                          'dimensional array like')
-    if (not isinstance(x, (list, np.ndarray, tuple))) or (not isinstance(y, (list, np.ndarray, tuple))):
+    if (not isinstance(x, (list, np.ndarray, tuple)))\
+            or (not isinstance(y, (list, np.ndarray, tuple))):
         raise ValueError('X and y must be a one dimensional array like')
     if (np.ndim(x) != 1) or (np.ndim(y) != 1):
         raise ValueError('X and y must be a one dimensional array like')
@@ -83,15 +84,17 @@ def point_base(x, y, source_dataframe, width, height, description, title, x_labe
     # the 3 values are different). For that case we use the argument
     # `automatic_color_mapping` in from the session.
 
-    elif (len(color) == 3) and isinstance(color[0],
-                                          numbers.Real) and session.automatic_color_mapping and (
-            len(y) == 3):
+    elif (len(color) == 3) \
+            and isinstance(color[0], numbers.Real)\
+            and session.automatic_color_mapping\
+            and (len(y) == 3):
         color = [color, color, color]
     else:
         # General case
         if is_color(color):
             color = [color for _ in y]
-        elif isinstance(color, (list, np.ndarray, tuple)) and is_color(color[0]):
+        elif isinstance(color, (list, np.ndarray, tuple))\
+                and is_color(color[0]):
             if len(color) == len(y):
                 pass  # Good case
             elif len(color) == 2:
@@ -114,8 +117,8 @@ def point_base(x, y, source_dataframe, width, height, description, title, x_labe
                 _add_color_bar = True
 
             if colorbar_type.lower() == 'auto':
-                if ((len(np.unique(color)) / len(color)) <= 0.5) and (
-                len(np.unique(color) < 9)):
+                if ((len(np.unique(color)) / len(color)) <= 0.5)\
+                        and (len(np.unique(color) < 9)):
                     # Data are considered categorical
                     colorbar_type = 'categorical'
                 else:
@@ -282,20 +285,22 @@ def point_base(x, y, source_dataframe, width, height, description, title, x_labe
     else:
         return plot
 
+
 def _update_point_default_args(point, session):
     def point_updated(x, y, source_dataframe=None, width=session.width,
-                     height=session.height, description=session.description,
-                     title=session.title, x_label=None, y_label=None,
-                     show_plot=session.show_plot, color=None,
-                     colorbar_type='auto', legend='auto', size=6, alpha=1,
-                     x_axis_type='auto', y_axis_type='auto',
-                     save_path=session.save_path,
-                     grid_visible=session.grid_visible):
+                      height=session.height, description=session.description,
+                      title=session.title, x_label=None, y_label=None,
+                      show_plot=session.show_plot, color=None,
+                      colorbar_type='auto', legend='auto', size=6, alpha=1,
+                      x_axis_type='auto', y_axis_type='auto',
+                      save_path=session.save_path,
+                      grid_visible=session.grid_visible):
         plot = point(x=x, y=y, source_dataframe=source_dataframe, width=width,
-                    height=height, description=description, title=title,
-                    x_label=x_label, y_label=y_label, show_plot=show_plot,
-                    color=color, colorbar_type=colorbar_type, legend=legend,
-                    size=size, alpha=alpha, x_axis_type=x_axis_type, y_axis_type=y_axis_type,
-                    grid_visible=grid_visible, session=session, save_path=save_path)
+                     height=height, description=description, title=title,
+                     x_label=x_label, y_label=y_label, show_plot=show_plot,
+                     color=color, colorbar_type=colorbar_type, legend=legend,
+                     size=size, alpha=alpha, x_axis_type=x_axis_type,
+                     y_axis_type=y_axis_type, grid_visible=grid_visible,
+                     session=session, save_path=save_path)
         return plot
     return point_updated

@@ -1,5 +1,6 @@
 class Plot:
-    def __init__(self, make_figure, steps, description, figure, width, grid_visible, width_session, session):
+    def __init__(self, make_figure, steps, description, figure, width,
+                 grid_visible, width_session, session):
         self.make_figure = make_figure
         self.steps = steps
         self.description = description
@@ -15,7 +16,9 @@ class Plot:
         for step in self.steps + other.steps:
             step(fig_sum)
         return Plot(make_figure=self.make_figure,
-                    steps=self.steps + other.steps, description=new_description,
+                    steps=self.steps + other.steps,
+                    description=new_description,
                     figure=fig_sum, width=self.width,
                     grid_visible=self.grid_visible,
-                    width_session=self.width_session, session=self.session)
+                    width_session=self.width_session,
+                    session=self.session)

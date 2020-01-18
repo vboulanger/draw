@@ -11,10 +11,10 @@ import numpy as np
 import pandas as pd
 
 
-def histogram_base(x, y, source_dataframe, tick_label, label_orientation, width, height, description, title, x_label, y_label,
+def histogram_base(x, y, source_dataframe, tick_label, label_orientation,
+                   width, height, description, title, x_label, y_label,
                    show_plot, color, colorbar_type, legend, bar_width, alpha,
-                   x_axis_type, y_axis_type, grid_visible, session,
-                   save_path):
+                   x_axis_type, y_axis_type, grid_visible, session, save_path):
     """ Scatter plot
 
     Args:
@@ -67,7 +67,8 @@ def histogram_base(x, y, source_dataframe, tick_label, label_orientation, width,
                          'array like')
     if x is None:
         x = np.arange(len(y))
-    if (not isinstance(x, (list, np.ndarray, tuple))) or (not isinstance(y, (list, np.ndarray, tuple))):
+    if (not isinstance(x, (list, np.ndarray, tuple))) \
+            or (not isinstance(y, (list, np.ndarray, tuple))):
         raise ValueError('X and y must be a one dimensional array like')
     if (np.ndim(x) != 1) or (np.ndim(y) != 1):
         raise ValueError('X and y must be a one dimensional array like')
@@ -86,15 +87,17 @@ def histogram_base(x, y, source_dataframe, tick_label, label_orientation, width,
     # the 3 values are different). For that case we use the argument
     # `automatic_color_mapping` in from the session.
 
-    elif (len(color) == 3) and isinstance(color[0],
-                                          numbers.Real) and session.automatic_color_mapping and (
-            len(y) == 3):
+    elif (len(color) == 3)\
+            and isinstance(color[0], numbers.Real)\
+            and session.automatic_color_mapping \
+            and (len(y) == 3):
         color = [color, color, color]
     else:
         # General case
         if is_color(color):
             color = [color for _ in y]
-        elif isinstance(color, (list, np.ndarray, tuple)) and is_color(color[0]):
+        elif isinstance(color, (list, np.ndarray, tuple))\
+                and is_color(color[0]):
             if len(color) == len(y):
                 pass  # Good case
             elif len(color) == 2:
@@ -118,7 +121,7 @@ def histogram_base(x, y, source_dataframe, tick_label, label_orientation, width,
 
             if colorbar_type.lower() == 'auto':
                 if ((len(np.unique(color)) / len(color)) <= 0.5) and (
-                len(np.unique(color) < 9)):
+                  len(np.unique(color) < 9)):
                     # Data are considered categorical
                     colorbar_type = 'categorical'
                 else:
@@ -222,8 +225,9 @@ def histogram_base(x, y, source_dataframe, tick_label, label_orientation, width,
         if len(x) == 1:
             bar_width = [1 for _ in y]
         else:
-            bar_width = [np.min(np.abs(np.diff(sorted(x)))) * 0.8 for _ in
-                         y]
+            bar_width = [
+                np.min(np.abs(np.diff(sorted(x)))) * 0.8 for _ in y
+            ]
     else:
         try:
             bar_width_td = pd.to_timedelta(bar_width)
@@ -288,8 +292,9 @@ def histogram_base(x, y, source_dataframe, tick_label, label_orientation, width,
                 # substract numpy.int64 and pandas timedeltas
                 left = [x_c_i - (bw_c_i / 2) for x_c_i, bw_c_i in
                         zip(x_c, bw_c)]
-                right = [x_c_i + (bw_c_i / 2) for x_c_i, bw_c_i in
-                        zip(x_c, bw_c)]
+                right = [
+                    x_c_i + (bw_c_i / 2) for x_c_i, bw_c_i in zip(x_c, bw_c)
+                ]
                 # left = np.array(x_c) - (np.array(bw_c) / 2)
                 # right = np.array(x_c) + (np.array(bw_c) / 2)
                 f.quad(bottom=0, top=y_copy, left=left, right=right,
@@ -305,17 +310,16 @@ def histogram_base(x, y, source_dataframe, tick_label, label_orientation, width,
                      major_label_overrides_c=major_label_overrides):
         try:
             f.xaxis.ticker.ticks = f.xaxis.ticker.ticks + x_copy_c
-        except:
+        except Exception as e:
             f.xaxis.ticker = x_copy_c
         try:
             f.xaxis.major_label_overrides.update(major_label_overrides_c)
-        except:
+        except Exception as e:
             f.xaxis.major_label_overrides = major_label_overrides_c
 
-    if (x_axis_type == 'linear') and isinstance(x_copy[0],
-                                                numbers.Real) and major_label_overrides:
+    if (x_axis_type == 'linear') \
+            and isinstance(x_copy[0], numbers.Real) and major_label_overrides:
         steps.append(format_ticks)
-
 
     def _make_fig():
         fig = figure(width=width, height=height, title=title,
@@ -354,6 +358,7 @@ def histogram_base(x, y, source_dataframe, tick_label, label_orientation, width,
     else:
         return plot
 
+
 def _update_histogram_default_args(histogram_base, session):
     def histogram_updated(y, x=None, source_dataframe=None, tick_label=None,
                           label_orientation='horizontal', width=session.width,
@@ -366,11 +371,15 @@ def _update_histogram_default_args(histogram_base, session):
                           y_axis_type='auto', save_path=session.save_path,
                           grid_visible=session.grid_visible):
         plot = histogram_base(x=x, y=y, source_dataframe=source_dataframe,
-                              tick_label=tick_label, label_orientation=label_orientation, width=width,
-                         height=height, description=description, title=title,
-                         x_label=x_label, y_label=y_label, show_plot=show_plot,
-                         color=color, colorbar_type=colorbar_type, legend=legend,
-                         bar_width=bar_width, alpha=alpha, x_axis_type=x_axis_type, y_axis_type=y_axis_type,
-                         grid_visible=grid_visible, session=session, save_path=save_path)
+                              tick_label=tick_label,
+                              label_orientation=label_orientation, width=width,
+                              height=height, description=description,
+                              title=title, x_label=x_label, y_label=y_label,
+                              show_plot=show_plot, color=color,
+                              colorbar_type=colorbar_type, legend=legend,
+                              bar_width=bar_width, alpha=alpha,
+                              x_axis_type=x_axis_type, y_axis_type=y_axis_type,
+                              grid_visible=grid_visible, session=session,
+                              save_path=save_path)
         return plot
     return histogram_updated

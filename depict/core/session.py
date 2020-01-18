@@ -1,5 +1,6 @@
 from bokeh.io import output_notebook, reset_output
 
+
 class Session:
     def __init__(self, width, height, save_path, file_exists_mode,
                  description, title, jupyter_notebook,

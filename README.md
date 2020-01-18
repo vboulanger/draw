@@ -1,7 +1,11 @@
-<img src="https://raw.githubusercontent.com/vboulanger/depict/master/logo_and_name.png" alt = "drawing" WIDTH=500/>
-
+<img src="https://raw.githubusercontent.com/vboulanger/depict/master/logo_and_name.png" alt = "drawing" WIDTH=500/></img>
 
 <br>
+
+<a href="https://travis-ci.com/vboulanger/depict">
+<img src="https://travis-ci.com/vboulanger/depict.svg?branch=master" alt="CI" />
+</a>
+
 <a href="https://pypi.org/project/depict/">
 <img src="https://img.shields.io/pypi/v/depict.svg" alt="latest release" />
 </a>
@@ -95,7 +99,7 @@ depict.line(random_walk, title='Random walk', legend='Path', x_label='Step')
 Your graph parameters are stored in a session to keep your graphs visually
 consistent and avoid boilerplate code.
 ```python
-depict.session(width=100, grid_visible=True, palette_name='linear_blue')
+depict.session(width=1000, grid_visible=True, palette_name='linear_blue')
 ```
 
 * #### Color bars made easy
