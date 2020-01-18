@@ -11,7 +11,7 @@ def test_sesstion_creation_basic():
 @pytest.mark.parametrize("file_exists_mode", ['append', 'overwrite'])
 @pytest.mark.parametrize("description", ['', 'Blablabla'])
 @pytest.mark.parametrize("title", ['', 'Blablabla'])
-@pytest.mark.parametrize("jupyter_notebook", [False, True])
+@pytest.mark.parametrize("jupyter_notebook", [False])
 @pytest.mark.parametrize("background_color", ['blue', (204, 101, 156)])
 @pytest.mark.parametrize("palette_name", ['categories_10', 'categories_256',
                                           'linear_purple', 'linear_blue_red',
