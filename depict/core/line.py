@@ -14,7 +14,7 @@ def line_base(y, x, source_dataframe, width, height, description, title,
               x_label, y_label, show_plot, color, colorbar_type, legend,
               line_width, alpha, style, x_axis_type, y_axis_type, fill_between,
               grid_visible, session, save_path):
-    """ One dimensional plot
+    """ One dimensional plot. This is the docstring of line
 
     Args:
         x (array-like): X-axis data
@@ -375,6 +375,113 @@ def _update_line_default_args(line, session):
                      y_axis_type='auto', fill_between=False,
                      save_path=session.save_path,
                      grid_visible=session.grid_visible):
+        """Plot a graph with one-dimensional line(s)
+
+        Args:
+            y (array-like of dimension 1 or 2): The y-coordinates for the
+                points of the line(s). If `y` is 1-d, one line will be drawn,
+                if  it is 2-d, a set of lines will be drawn.
+                The values can be either numbers, or dates (datetimes or
+                parsable strings). If a `source_dataframe` is given, `x` and
+                `y` should be column names / keys.
+
+            x (None, array-like of dimension 1 or 2): The x-coordinates for the
+                points of the line(s). If `None`, indexes starting from 0 and
+                adapted to `y` will be used. If `y` is 1-d, one line will be
+                drawn, if  it is 2-d, a set of lines will be drawn.
+                The values can be either numbers, or dates (datetimes or
+                parsable strings). If a `source_dataframe` is given, `x` and
+                `y` should be column names / keys.
+
+            source_dataframe (None, Pandas DataFrame or dict): Input data as
+                Pandas DataFrame or dictionary. If it is a Pandas DataFrame,
+                and `x` is None, the index of the dataframe is used as `x`
+
+            width (int): The width of the graph, including any axes, titles,
+                etc
+
+            height (int): The height of the graph, including any axes, titles,
+                etc
+
+            description (str): HTML-formatted text that will be kept bellow the
+                graph. It generally includes metadata, details about the,
+                graphs, etc. It will be kept when the graph is displayed,
+                exported or rendered in a grid with other graphs. If The graph
+                is summed with other graph, their metadata will be concatenated
+                (adding a new line between both)
+
+            title (str): Title of the graph. The attributes of the title
+                (font), cannot be tuned directly in depict
+
+            x_label (None, str): Label of the x-axis
+
+            y_label (None, str): Label of the y-axis
+
+            show_plot (bool): Whether or not the graph must be displayed
+                immediatly after its creation
+
+            color (None, str, array-like): If None, the first color of the
+                palette is used.
+                If string, a color name is expected (hexadecimal, RGB, and
+                usual colors are accepted), and it will be the same for all
+                the lines.
+                If array-like, the length of color should correspond to the
+                number of lines drawn, they will correspond to each line
+                respectively
+
+            colorbar_type ({`auto`, `categorical`, `continuous`}): If 'auto',
+                the best type will be chosen wrt the data. If `categorical`:
+                a legend will be used, not a colorbar. If `continuous`, a
+                colorbar will be displayed on the right side of the plot.
+                The data defining the color must be passed in `color`
+
+            legend ('auto', array-like): If `auto`, the legend will be set when
+                a Pandas DataFrame ora dictionary is provided (the name of the
+                columns / keys will be the legend). If array-like, the length
+                of `legend` must match with the number of curves dranw
+
+            line_width (Number, array-like): Width of the line(s). If Number
+                it will the same for all the lines. If it is an array-like,
+                its length must match with the number of lines drawn. They will
+                correspond to each line respectively
+
+            alpha (Number, array-like): Alpha value of the line(s). If Number
+                it will the same for all the lines. If it is an array-like,
+                its length must match with the number of lines drawn. They will
+                correspond to each line respectively
+
+            style ({'solid', 'dashed', 'dotted', 'dotdash', dashdot'} or array
+                like of those): Style of the line(s). If it is an array-like,
+                its length must match with the number of lines drawn. They will
+                correspond to each line respectively
+
+            x_axis_type ({'auto', 'numerical', 'datetime'}): Type of the axis.
+                If 'auto', the type will be set automatically based on the data
+                provided. If 'numerical', 'datetime', the type is set
+                accordingly.
+
+            y_axis_type ({'auto', 'numerical', 'datetime'}): Type of the axis.
+                If 'auto', the type will be set automatically based on the data
+                provided. If 'numerical', 'datetime', the type is set
+                accordingly.
+
+            fill_between (bool): If True, there must be at least 2 curves to
+                plot and the area between the first 2 curves is filled. The
+                color of the first line and its alpha value are used for the
+                part filled. In depict, you cannot have more control about
+                this area
+
+            save_path (None, str): If None, the graph is not saved. If str,
+                the graph is saved in html at the gicen path. If the html
+                extension is missing, it will be added automatically
+
+            grid_visible (bool): Whether the background grid must be displayed.
+                In depict, you cannot have further control about the background
+                grid
+
+        Returns:
+            None
+        """
         plot = line(y=y, x=x, source_dataframe=source_dataframe, width=width,
                     height=height, description=description, title=title,
                     x_label=x_label, y_label=y_label, show_plot=show_plot,

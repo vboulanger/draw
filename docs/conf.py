@@ -12,7 +12,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../depict'))
+sys.path.insert(0, os.path.abspath('..'))
 
 
 # -- Project information -----------------------------------------------------
@@ -31,7 +31,22 @@ release = '0.1.4'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.autodoc',
+    'sphinx.ext.napoleon',
 ]
+
+# napoleon settings
+napoleon_google_docstring = True
+napoleon_numpy_docstring = True
+napoleon_include_init_with_doc = True
+napoleon_include_private_with_doc = True
+napoleon_include_special_with_doc = True
+napoleon_use_admonition_for_examples = True
+napoleon_use_admonition_for_notes = True
+napoleon_use_admonition_for_references = True
+napoleon_use_ivar = True
+napoleon_use_param = True
+napoleon_use_rtype = True
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -49,6 +64,22 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 # html_theme = 'pyramid'
 html_theme = 'alabaster'
+
+html_theme_options = {
+    'logo': 'https://raw.githubusercontent.com/vboulanger/depict/master/logo.png',
+    'github_repo': 'vboulanger/depict',
+    'github_button': 'true',
+    'link': '#aa560c',
+    # 'show_powered_by': 'false',
+    # "relbarbgcolor": "#333",
+    # "sidebarlinkcolor": "#e15617",
+    # "sidebarbgcolor": "#000",
+    # "sidebartextcolor": "#333",
+    # "footerbgcolor": "#111",
+    # "linkcolor": "#aa560c",
+    # "headtextcolor": "#643200",
+    # "codebgcolor": "#f5efe7",
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
