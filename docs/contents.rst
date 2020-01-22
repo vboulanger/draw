@@ -6,14 +6,10 @@
 Welcome to depict's documentation!
 ==================================
 
-.. toctree::
-   :maxdepth: 2
+Depict is built on the top of Bokeh. It aims at providing one-line access
+to the most common types of graph by setting opinionated default and avoiding
+boilerplate code. Graphs are aesthetic, efficiently rendered, interactive and
+sharable.
 
-   line
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+It is made for data-{scientist, analyst, engineer, lead, etc} seeking to
+create beautiful plots while reducing the graph-tweaking time.
