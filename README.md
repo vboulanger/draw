@@ -72,6 +72,10 @@ interact with depict figure and get access to a fine level of granularity.
   sudo python setup.py install
   ```
 
+# Documentation
+The documentation can be found at: [https://depict.readthedocs.io](https://depict.readthedocs.io).
+
+
 # Get started
 ### Hello world
 
