@@ -52,7 +52,9 @@ html_theme = 'alabaster'
 
 html_theme_options = {
     'logo': 'logo.png',
-    'github_repo': 'vboulanger/depict',
+    # 'github_repo': 'vboulanger/depict',
+    'github_user': 'vboulanger',
+    'github_repo': 'depict',
     'github_button': 'true',
     # 'link': '#aa560c',
     # 'show_powered_by': 'false',
