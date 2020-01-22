@@ -50,21 +50,21 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 html_theme = 'alabaster'
 
-# html_theme_options = {
-#     'logo': 'https://raw.githubusercontent.com/vboulanger/depict/master/logo.png',
-#     'github_repo': 'vboulanger/depict',
-#     'github_button': 'true',
-#     'link': '#aa560c',
-#     # 'show_powered_by': 'false',
-#     # "relbarbgcolor": "#333",
-#     # "sidebarlinkcolor": "#e15617",
-#     # "sidebarbgcolor": "#000",
-#     # "sidebartextcolor": "#333",
-#     # "footerbgcolor": "#111",
-#     # "linkcolor": "#aa560c",
-#     # "headtextcolor": "#643200",
-#     # "codebgcolor": "#f5efe7",
-# }
+html_theme_options = {
+    'logo': 'logo.png',
+    'github_repo': 'vboulanger/depict',
+    'github_button': 'true',
+    # 'link': '#aa560c',
+    # 'show_powered_by': 'false',
+    # "relbarbgcolor": "#333",
+    # "sidebarlinkcolor": "#e15617",
+    # "sidebarbgcolor": "#000",
+    # "sidebartextcolor": "#333",
+    # "footerbgcolor": "#111",
+    # "linkcolor": "#aa560c",
+    # "headtextcolor": "#643200",
+    # "codebgcolor": "#f5efe7",
+}
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
