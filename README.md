@@ -6,6 +6,10 @@
 <img src="https://travis-ci.com/vboulanger/depict.svg?branch=master" alt="CI" />
 </a>
 
+<a href='https://depict.readthedocs.io/en/latest/?badge=latest'>
+<img src='https://readthedocs.org/projects/depict/badge/?version=latest' alt='Documentation Status' />
+</a>
+
 <a href="https://pypi.org/project/depict/">
 <img src="https://img.shields.io/pypi/v/depict.svg" alt="latest release" />
 </a>
