@@ -159,8 +159,11 @@ def from_rgb_to_hex(col):
 def format_color(col):
     if isinstance(col, (list, np.ndarray, tuple)) and all(
             [isinstance(c_i, (float, int)) for c_i in col]) and (
-            0 <= np.min(col) <= np.max(col) <= 1) and (len(col) == 3):
-        rgb = (int(255 * col[0]), int(255 * col[1]), int(255 * col[2]))
+            len(col) == 3):
+        if 0 <= np.min(col) <= np.max(col) <= 1:
+            rgb = (int(255 * col[0]), int(255 * col[1]), int(255 * col[2]))
+        else:
+            rgb = (int(col[0]), int(col[1]), int(col[2]))
         return from_rgb_to_hex(rgb)
     else:
         return col
