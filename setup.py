@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="depict",
-    version="1.0",
+    version="1.0.1",
     author="Victor Boulanger",
     author_email="vb@live.fr",
     description="Business grade visualizations in seconds",

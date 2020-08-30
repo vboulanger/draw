@@ -1,9 +1,10 @@
 from .plot import Plot
-from .tools import show_base, save_base, is_color, format_color
+from .tools import show_base, save_base, is_color, format_color, is_iterable
 from ..tools.color_palettes import palette_from_name_to_function
 
 import numbers
 
+from bokeh.models import Range1d
 from bokeh.plotting import figure
 from bokeh.models import ColorBar, LinearColorMapper
 import numpy as np
@@ -12,13 +13,15 @@ import pandas as pd
 
 def line_base(y, x, source_dataframe, width, height, description, title,
               x_label, y_label, show_plot, color, colorbar_type, legend,
-              line_width, alpha, style, x_axis_type, y_axis_type, fill_between,
-              grid_visible, session, save_path):
+              line_width, alpha, style, x_axis_type, y_axis_type, x_range,
+              y_range, fill_between, grid_visible, session, save_path):
     """ One dimensional plot. This is the docstring of line
 
     Args:
         x (array-like): X-axis data
         y (array-like): y-axis data
+        x_range (array-like) Range of the x-axis. E.g. `[0, 1]`
+        y_range (array-like) Range of the y-axis. E.g. `[0, 1]`
     """
     # We convert (source, x and y) into only x and y. x and y will be processed
     # normally. source will not be used any more.
@@ -342,6 +345,14 @@ def line_base(y, x, source_dataframe, width, height, description, title,
         fig.xgrid.grid_line_dash = [8, 3, 2, 3]
         fig.ygrid.grid_line_dash = [8, 3, 2, 3]
         fig.toolbar.autohide = True
+        if x_range is not None:
+            if not is_iterable(x_range):
+                raise ValueError('`x_range` argument should be an iterable')
+            fig.x_range = Range1d(x_range[0], x_range[1])
+        if y_range is not None:
+            if not is_iterable(y_range):
+                raise ValueError('`y_range` argument should be an iterable')
+            fig.y_range = Range1d(y_range[0], y_range[1])
         if _color_bar_made and _add_color_bar:
             color_mapper = LinearColorMapper(palette=palette_colors,
                                              low=color_min,
@@ -372,8 +383,8 @@ def _update_line_default_args(line, session):
                      show_plot=session.show_plot, color=None,
                      colorbar_type='auto', legend='auto', line_width=1,
                      alpha=1, style='solid', x_axis_type='auto',
-                     y_axis_type='auto', fill_between=False,
-                     save_path=session.save_path,
+                     y_axis_type='auto', x_range=None, y_range=None,
+                     fill_between=False, save_path=session.save_path,
                      grid_visible=session.grid_visible):
         """Plot a graph with one-dimensional line(s)
 
@@ -458,12 +469,16 @@ def _update_line_default_args(line, session):
             x_axis_type ({'auto', 'numerical', 'datetime'}): Type of the axis.
                 If 'auto', the type will be set automatically based on the data
                 provided. If 'numerical', 'datetime', the type is set
-                accordingly.
+                accordingly
 
             y_axis_type ({'auto', 'numerical', 'datetime'}): Type of the axis.
                 If 'auto', the type will be set automatically based on the data
                 provided. If 'numerical', 'datetime', the type is set
-                accordingly.
+                accordingly
+
+            x_range (array-like): Range of the x-axis
+
+            y_range (array-like): Range of the y-axis
 
             fill_between (bool): If True, there must be at least 2 curves to
                 plot and the area between the first 2 curves is filled. The
@@ -488,7 +503,8 @@ def _update_line_default_args(line, session):
                     color=color, colorbar_type=colorbar_type, legend=legend,
                     line_width=line_width, alpha=alpha, style=style,
                     x_axis_type=x_axis_type, y_axis_type=y_axis_type,
-                    fill_between=fill_between, grid_visible=grid_visible,
-                    session=session, save_path=save_path)
+                    x_range=x_range, y_range=y_range, fill_between=fill_between,
+                    grid_visible=grid_visible, session=session,
+                    save_path=save_path)
         return plot
     return line_updated

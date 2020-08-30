@@ -167,3 +167,21 @@ def format_color(col):
         return from_rgb_to_hex(rgb)
     else:
         return col
+
+
+def is_iterable(obj):
+    ''' Check if an object is iterable
+    Cf https://stackoverflow.com/questions/1952464/in-python-how-do-i-determine-if-an-object-is-iterable
+
+    Args:
+        obj (Any object)
+
+    Returns
+        is_iterable (bool)
+    '''
+    try:
+        iter(obj)
+    except Exception:
+        return False
+    else:
+        return True

@@ -1,10 +1,11 @@
 from .plot import Plot
-from .tools import show_base, save_base, is_color, format_color
+from .tools import show_base, save_base, is_color, format_color, is_iterable
 from ..tools.color_palettes import palette_from_name_to_function
 
 import copy
 import numbers
 
+from bokeh.models import Range1d
 from bokeh.plotting import figure
 from bokeh.models import ColorBar, LinearColorMapper
 import numpy as np
@@ -14,7 +15,8 @@ import pandas as pd
 def histogram_base(x, y, source_dataframe, tick_label, label_orientation,
                    width, height, description, title, x_label, y_label,
                    show_plot, color, colorbar_type, legend, bar_width, alpha,
-                   x_axis_type, y_axis_type, grid_visible, session, save_path):
+                   x_axis_type, y_axis_type, x_range, y_range, grid_visible,
+                   session, save_path):
     """ Scatter plot
 
     Args:
@@ -351,6 +353,14 @@ def histogram_base(x, y, source_dataframe, tick_label, label_orientation,
         fig.xgrid.grid_line_dash = [8, 3, 2, 3]
         fig.ygrid.grid_line_dash = [8, 3, 2, 3]
         fig.toolbar.autohide = True
+        if x_range is not None:
+            if not is_iterable(x_range):
+                raise ValueError('`x_range` argument should be an iterable')
+            fig.x_range = Range1d(x_range[0], x_range[1])
+        if y_range is not None:
+            if not is_iterable(y_range):
+                raise ValueError('`y_range` argument should be an iterable')
+            fig.y_range = Range1d(y_range[0], y_range[1])
         # if (x_axis_type == 'linear') and isinstance(x_copy[0], numbers.Real):
         #     if major_label_overrides:
         #         fig.xaxis.ticker = x_copy
@@ -388,7 +398,8 @@ def _update_histogram_default_args(histogram_base, session):
                           show_plot=session.show_plot, color=None,
                           colorbar_type='auto', legend='auto',
                           bar_width='auto', alpha=1, x_axis_type='auto',
-                          y_axis_type='auto', save_path=session.save_path,
+                          y_axis_type='auto', x_range=None, y_range=None,
+                          save_path=session.save_path,
                           grid_visible=session.grid_visible):
         """Plot a graph with points (scatter-plot)
 
@@ -495,6 +506,10 @@ def _update_histogram_default_args(histogram_base, session):
                 provided. If 'numerical', 'datetime', the type is set
                 accordingly.
 
+            x_range (array-like): Range of the x-axis
+
+            y_range (array-like): Range of the y-axis
+
             save_path (None, str): If None, the graph is not saved. If str,
                 the graph is saved in html at the given path. If the html
                 extension is missing, it will be added automatically
@@ -515,6 +530,7 @@ def _update_histogram_default_args(histogram_base, session):
                               colorbar_type=colorbar_type, legend=legend,
                               bar_width=bar_width, alpha=alpha,
                               x_axis_type=x_axis_type, y_axis_type=y_axis_type,
+                              x_range=x_range, y_range=y_range,
                               grid_visible=grid_visible, session=session,
                               save_path=save_path)
         return plot
