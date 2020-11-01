@@ -171,7 +171,8 @@ def format_color(col):
 
 def is_iterable(obj):
     ''' Check if an object is iterable
-    Cf https://stackoverflow.com/questions/1952464/in-python-how-do-i-determine-if-an-object-is-iterable
+    Cf https://stackoverflow.com/questions/1952464/in-python-how-do-i- \
+    determine-if-an-object-is-iterable
 
     Args:
         obj (Any object)

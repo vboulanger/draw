@@ -503,8 +503,8 @@ def _update_line_default_args(line, session):
                     color=color, colorbar_type=colorbar_type, legend=legend,
                     line_width=line_width, alpha=alpha, style=style,
                     x_axis_type=x_axis_type, y_axis_type=y_axis_type,
-                    x_range=x_range, y_range=y_range, fill_between=fill_between,
-                    grid_visible=grid_visible, session=session,
-                    save_path=save_path)
+                    x_range=x_range, y_range=y_range,
+                    fill_between=fill_between, grid_visible=grid_visible,
+                    session=session, save_path=save_path)
         return plot
     return line_updated
